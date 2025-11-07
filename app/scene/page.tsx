@@ -10,12 +10,6 @@ function TableModel() {
   return <primitive object={scene} scale={1.5} position={[-10, -2, 6]} />;
 }
 
-
-function PieModel() {
-    const { scene } = Drei.useGLTF("/models/pie.glb");
-    return <primitive object={scene} scale={6.5} position={[0, 1, 6]} />;
-}
-
 function LeavesModel() {
     const { scene } = Drei.useGLTF("/models/leaves.glb");
     return <primitive object={scene} scale={2} position={[0, 1.08, 1.9]} />;

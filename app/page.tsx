@@ -1,11 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useGLTF } from "@react-three/drei";
 
 const messages = ["Hi.", "Today we celebrate...", "You! 🎉", "Happy Birthday 😄 Enjoy your day!"];
 
 export default function Home() {
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    // 👇 These run once and start downloading your 3D assets
+    useGLTF.preload("/models/autumn_maple.glb");
+    useGLTF.preload("/models/cherrycake.glb");
+    useGLTF.preload("/models/table.glb");
+    useGLTF.preload("/models/leaves.glb");
+    useGLTF.preload("/models/ganache.glb");
+  }, []);
 
   useEffect(() => {
     if (index < messages.length - 1) {
