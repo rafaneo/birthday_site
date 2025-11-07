@@ -4,7 +4,7 @@ import * as Drei from "@react-three/drei";
 import { Suspense } from "react";
 import BirthdayCard3D from "./BirthdayCard";
 
-function LoadingPlaceholder() {
+function Loader() {
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-amber-300 to-gray-500 text-2xl text-white">
       Loading scene...
@@ -46,14 +46,15 @@ function ChocolateCakeModel() {
 
 export default function Scene() {
   return (
-    <div className="h-screen w-screen bg-gradient-to-b from-amber-300 to-gray-500">
+    <div className="relative h-screen w-screen bg-gradient-to-b from-amber-300 to-gray-500">
       <Canvas shadows>
         <color attach="background" args={["#fef3c7"]} />
         <Drei.PerspectiveCamera makeDefault position={[0, 1.5, 4]} />
         <ambientLight intensity={0.6} />
         <directionalLight position={[3, 3, 3]} intensity={2} castShadow />
 
-        <Suspense fallback={<LoadingPlaceholder />}>
+        {/* ✅ Correct: suspense inside the canvas */}
+        <Suspense fallback={<Drei.Html center><Loader /></Drei.Html>}>
           <BirthdayCard3D />
           <ChocolateCakeModel />
           <TreeModel />
